@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: 'Dockerfile.${APP_ENV}'
+      args:
+        GOLANG_VERSION: ${GOLANG_VERSION}
+    image: 'goapp/${APP_NAME}:${GOLANG_VERSION}'
+    container_name: goapp-${APP_NAME}
+    hostname: goapp
+    ports:
+      - '${APP_PORT}:${APP_PORT}'
+    environment:
+      TZ: '${APP_TIMEZONE}'
+    volumes:
+      - '.:/var/www/html'
+    env_file:
+      - .env.example
+    restart: always

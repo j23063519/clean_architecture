@@ -1,0 +1,26 @@
+# syntax=docker/dockerfile:1
+
+## Build
+ARG GOLANG_VERSION
+
+FROM golang:$GOLANG_VERSION-alpine AS build
+
+WORKDIR /var/www/html
+
+COPY . .
+
+RUN go mod download
+
+
+RUN CGO_ENABLED=0 go build -o /build
+
+## Deploy
+FROM alpine:latest AS deploy
+
+WORKDIR /var/www/html
+
+COPY . .
+
+COPY --from=build /build /goapp
+
+ENTRYPOINT ["/goapp", "serve"]

@@ -1,0 +1,52 @@
+stages:
+  - test
+  - build
+  - publish
+  - deploy
+
+run_test:
+  stage: test
+  tags:
+    - cleanarch
+  script:
+    - echo "Test"
+    - echo "Test ok!!"
+
+run_build_image:
+  needs:
+    - run_test
+  stage: build
+  tags:
+    - cleanarch
+  before_script:
+    - echo "Before Build"
+    - echo "Before Build ok!!"
+  script:
+    - echo "Build"
+    - echo "Build ok!!"
+
+run_publish_image:
+  needs:
+    - run_build_image
+  stage: publish
+  tags:
+    - cleanarch
+  before_script:
+    - echo "Before Publish"
+    - echo "Before Publish ok!!"
+  script:
+    - echo "Publish"
+    - echo "Publish ok!!"
+
+run_deploy:
+  needs:
+    - run_publish_image
+  stage: deploy
+  tags:
+    - cleanarch
+  before_script:
+    - echo "Before Deploy"
+    - echo "Before Deploy ok!!"
+  script:
+    - echo "Deploy"
+    - echo "Deploy ok!!"

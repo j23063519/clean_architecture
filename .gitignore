@@ -1,0 +1,22 @@
+# environment
+.env
+.history
+
+# exe
+*.exe
+
+# log and db
+*.log
+*.sqlite
+*.db
+
+# air
+tmp/
+.tmp/
+
+# system
+.DS_Store
+.DS_Store?
+
+# ide
+.vscode/
