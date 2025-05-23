@@ -20,7 +20,7 @@ type db struct {
 var DBs map[string]db
 
 // connect database
-func Connet(configs map[string]gorm.Dialector, _logger gormlogger.Interface) error {
+func Connect(configs map[string]gorm.Dialector, _logger gormlogger.Interface) error {
 	DBs = make(map[string]db)
 
 	for k, v := range configs {

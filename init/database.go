@@ -22,7 +22,7 @@ func SetDB() {
 		config.Config.App.TIMEZONE,
 	)
 
-	if err := database.Connet(configs, logpkg.NewGormLogger()); err != nil {
+	if err := database.Connect(configs, logpkg.NewGormLogger()); err != nil {
 		logpkg.ErrorJSON("Database", "db connection", err)
 		console.Error("Couldn't connect to database: " + err.Error())
 	}
